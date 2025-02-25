@@ -23,6 +23,7 @@
 	</developers>
 	<modules>
 		<module>authentication</module>
+		<module>transaction</module>
 	</modules>
 	<scm>
 		<connection/>
