@@ -24,6 +24,7 @@
 	<modules>
 		<module>authentication</module>
 		<module>transaction</module>
+		<module>lib</module>
 	</modules>
 	<scm>
 		<connection/>
