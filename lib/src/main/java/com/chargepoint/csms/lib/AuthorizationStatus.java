@@ -7,7 +7,8 @@ public enum AuthorizationStatus {
     ACCEPTED("Accepted"),
     INVALID("Invalid"),
     UNKNOWN("Unknown"),
-    REJECTED("Rejected");
+    REJECTED("Rejected"),
+    INTERNAL_ERROR("Internal Error");
 
     private final String status;
 
