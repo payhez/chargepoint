@@ -31,3 +31,14 @@ services:
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
     depends_on:
       - kafka
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_driver_db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootPass
+      MYSQL_DATABASE: driverdb
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./docker-init:/docker-entrypoint-initdb.d
