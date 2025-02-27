@@ -1,6 +1,6 @@
 package com.chargepoint.csms.transaction.controller.response;
 
-import com.chargepoint.csms.transaction.enums.AuthorizationStatus;
+import com.chargepoint.csms.lib.AuthorizationStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

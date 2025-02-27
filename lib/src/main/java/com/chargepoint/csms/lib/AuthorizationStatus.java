@@ -1,4 +1,4 @@
-package com.chargepoint.csms.transaction.enums;
+package com.chargepoint.csms.lib;
 
 import lombok.Getter;
 
