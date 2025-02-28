@@ -1,6 +1,5 @@
 package com.chargepoint.csms.authentication.service;
 
-import com.chargepoint.csms.authentication.entity.Driver;
 import com.chargepoint.csms.authentication.repository.DriverRepository;
 import com.chargepoint.csms.lib.AuthenticationRequest;
 import com.chargepoint.csms.lib.AuthenticationResponse;
@@ -27,6 +26,7 @@ public class AuthenticationService {
     @Autowired
     private DriverRepository driverRepository;
 
+    // In a real life production scenario, this would be calculated via config or retrieved from a database.
     private static final BigDecimal CHARGING_FEE = BigDecimal.valueOf(175.25);
 
     @KafkaListener(topics = "authentication-requests")
