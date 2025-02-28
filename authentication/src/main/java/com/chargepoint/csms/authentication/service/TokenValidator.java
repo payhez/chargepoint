@@ -2,7 +2,6 @@ package com.chargepoint.csms.authentication.service;
 
 import com.chargepoint.csms.authentication.config.SecurityConfig;
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
