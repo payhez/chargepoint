@@ -48,6 +48,13 @@ public class AuthenticationService {
         kafkaTemplate.send("authentication-responses", response);
     }
 
+    /**
+     * <p> Retrieves the driver from the repository. Then, checks if the driver has sufficient credit. If the credit is
+     * sufficient; subtracts the charging fee and returns {@link AuthorizationStatus} of ACCEPTED.
+     * If not; returns REJECTED:
+     * @param driverIdentifier the string identifier of a driver
+     * @return the {@link Mono} that contains {@link AuthorizationStatus}
+     */
     private Mono<AuthorizationStatus> checkDriverAndCharge(final String driverIdentifier) {
         return driverRepository.findByDriverIdentifier(driverIdentifier)
                 .flatMap(driver -> {
