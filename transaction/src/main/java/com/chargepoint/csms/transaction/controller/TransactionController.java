@@ -34,6 +34,18 @@ public class TransactionController {
     @Autowired
     private KafkaProducer kafkaProducer;
 
+    /**
+     * A cache of to keep track of pending requests to Authentication service.
+     *
+     * <p>This map stores the asynchronous authentication responses that WILL be received from Authentication service.
+     * Each key is a {@link UUID} representing the randomly generated uuid of the authentication requests.
+     * <ul>
+     *   <li>The key is a randomly generated {@link UUID} to help matching the requests to corresponding responses.</li>
+     *   <li>The value is a {@link CompletableFuture} that expected to be completed upon receiving response for the
+     *   authentication request.
+     * </ul>
+     * </p>
+     */
     private final Map<UUID, CompletableFuture<AuthenticationResponse>> pendingRequests = new ConcurrentHashMap<>();
 
     @PostMapping(value = "/authorize", produces = MediaType.APPLICATION_JSON_VALUE)
