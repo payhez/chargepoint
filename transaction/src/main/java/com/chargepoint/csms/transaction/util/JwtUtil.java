@@ -5,6 +5,8 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
 @Component
@@ -18,7 +20,7 @@ public class JwtUtil {
                 .setSubject(identifier)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 60_000)) // expires after 1 minute
-                .signWith(SignatureAlgorithm.HS256, securityConfig.getJwtSecretKey())
+                .signWith(SignatureAlgorithm.HS256, securityConfig.getJwtSecretKey().getBytes(StandardCharsets.UTF_8))
                 .compact();
     }
 }

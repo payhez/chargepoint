@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import io.jsonwebtoken.Jwts;
 
+import java.nio.charset.StandardCharsets;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -18,8 +20,7 @@ public class TokenValidator {
     public String extractIdentifier(final String token) {
         try {
             Claims claims = Jwts.parser()
-                    .setSigningKey(Keys.hmacShaKeyFor(securityConfig.getJwtSecretKey().getBytes()))
-                    .build()
+                    .setSigningKey(securityConfig.getJwtSecretKey().getBytes(StandardCharsets.UTF_8))
                     .parseClaimsJws(token)
                     .getBody();
             return claims.getSubject();
