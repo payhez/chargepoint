@@ -5,6 +5,7 @@ import com.chargepoint.csms.authentication.repository.DriverRepository;
 import com.chargepoint.csms.lib.AuthenticationRequest;
 import com.chargepoint.csms.lib.AuthenticationResponse;
 import com.chargepoint.csms.lib.AuthorizationStatus;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -14,6 +15,7 @@ import reactor.core.publisher.Mono;
 import java.math.BigDecimal;
 
 @Service
+@Slf4j
 public class AuthenticationService {
 
     @Autowired
@@ -47,7 +49,7 @@ public class AuthenticationService {
     }
 
     private Mono<AuthorizationStatus> checkDriverAndCharge(final String driverIdentifier) {
-        return driverRepository.findById(driverIdentifier)
+        return driverRepository.findByDriverIdentifier(driverIdentifier)
                 .flatMap(driver -> {
                     if (driver.getCredit().compareTo(CHARGING_FEE) < 0) {
                         return Mono.just(AuthorizationStatus.REJECTED);
@@ -55,6 +57,9 @@ public class AuthenticationService {
                     driver.setCredit(driver.getCredit().subtract(CHARGING_FEE));
                     return driverRepository.save(driver)
                             .thenReturn(AuthorizationStatus.ACCEPTED);
+                }).onErrorResume(e -> {
+                    log.error("Error occurred while querying: {}", driverIdentifier ,e);
+                    return Mono.just(AuthorizationStatus.INTERNAL_ERROR);
                 }).defaultIfEmpty(AuthorizationStatus.UNKNOWN);
     }
 }
