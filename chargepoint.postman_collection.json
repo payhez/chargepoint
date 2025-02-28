@@ -1,0 +1,165 @@
+{
+	"info": {
+		"_postman_id": "e626ac25-95f0-4221-8a2a-36c11107f700",
+		"name": "chargepoint",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13015748"
+	},
+	"item": [
+		{
+			"name": "accepted",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"stationUuid\" : \"5341ec24-e0ff-4f6d-b1c8-a8ad241e030a\",\r\n    \"driverIdentifier\": {\r\n        \"id\": \"22345678901234567890\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/transaction/authorize",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"transaction",
+						"authorize"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "rejected",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"stationUuid\" : \"5341ec24-e0ff-4f6d-b1c8-a8ad241e030a\",\r\n    \"driverIdentifier\": {\r\n        \"id\": \"12345678901234567890\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/transaction/authorize",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"transaction",
+						"authorize"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "unknown",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"stationUuid\" : \"5341ec24-e0ff-4f6d-b1c8-a8ad241e030a\",\r\n    \"driverIdentifier\": {\r\n        \"id\": \"anUnknownIdentifierThatIsLongerThanTwentyChars\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/transaction/authorize",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"transaction",
+						"authorize"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "bad_request for station uuid",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"stationUuid\" : \"this-in-not-a-uuid\",\r\n    \"driverIdentifier\": {\r\n        \"id\": \"22345678901234567890\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/transaction/authorize",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"transaction",
+						"authorize"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "invalid",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"stationUuid\" : \"5341ec24-e0ff-4f6d-b1c8-a8ad241e030a\",\r\n    \"driverIdentifier\": {\r\n        \"id\": \"shorterThan20Chars\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/transaction/authorize",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"transaction",
+						"authorize"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
