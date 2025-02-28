@@ -2,9 +2,9 @@ server:
   port: 8080
 spring:
   r2dbc:
-    url: r2dbc:mysql://localhost:3306/driverdb
-    username: root
-    password: rootPass
+    url: r2dbc:mysql://localhost:3306/driverdb?sslMode=DISABLED
+    username: driver_user
+    password: userPass
   kafka:
     bootstrap-servers: localhost:9092
     producer:

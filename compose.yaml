@@ -28,6 +28,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: rootPass
       MYSQL_DATABASE: driverdb
+    command:
+      - --default-authentication-plugin=mysql_native_password
     ports:
       - "3306:3306"
     volumes:
