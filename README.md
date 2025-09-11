@@ -6,7 +6,6 @@ They were generated through the Spring initializer for Java 21 with dev tools an
 In production, all modules would be a separate standalone maven projects. 
 
 ### Modules
-
 - chargepoint (parent maven project)
     - authentication (child maven project) (Spring Boot App)
     - transaction (child maven project) (Spring Boot App)
